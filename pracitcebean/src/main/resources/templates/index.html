@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+			    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index Home Page</title>
+    <style>
+     .errors{
+      color: red;
+     }
+    </style>
+  </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
+        crossorigin="anonymous"> 
+        
+        
+        
+  <body>  
+<hr>
+<br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form class="form-group" th:action="@{/createCustomer}" th:object="${customer}" method="POST">
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" th:field="*{firstName}" name="firstName" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" th:field="*{lastName}" name="lastName" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" th:field="*{email}" name="email" placeholder="Email">
+                    </div>
+                    
+                      <div class="form-group">
+                        <label for="freePasses">Free pases:</label>
+                        <input type="text" class="form-control" th:field="*{freePasses}" name="freePasses" placeholder="Free Passes">
+                    </div>
+                    
+                     <div class="form-group">
+                        <label for="postalCode">Postal Code:</label>
+                        <input type="text" class="form-control" th:field="*{postalCode}" name="postalCode" placeholder="PostalCode">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="codeRegistration">codeRegistration Code:</label>
+                        <input type="text" class="form-control" th:field="*{codeRegistration}" name="codeRegistration" placeholder="codeRegistration">
+                    </div>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <!--  Add Error messasge  (if present) -->
+                     <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="erros"></span>
+                     <span th:if="${#fields.hasErrors('freePasses')}" th:errors="*{freePasses}" class="erros"></span>
+                     <span th:if="${#fields.hasErrors('postalCode')}" th:errors="*{postalCode}" class="erros"></span>
+                     <span th:if="${#fields.hasErrors('codeRegistration')}" th:errors="*{codeRegistration}" class="erros"></span>
+                </form>
+            </div>	
+        </div>
+    </div>
+    <hr>
+  </body>
+  
+   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</html>

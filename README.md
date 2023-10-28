@@ -1,2 +1,0 @@
-# glupitest
-glupi test

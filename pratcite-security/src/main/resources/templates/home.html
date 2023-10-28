@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+			    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomePage</title>
+  </head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" 
+        rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" 
+        crossorigin="anonymous"> 
+  <body>
+   <h2>CAO BATO</h2>
+   User <span sec:authentication="principal.username"></span>
+   Role <span sec:authentication="principal.authorities"></span>
+   
+   <!--  ADD LINK TO POINT TO THE LEADERS   MANAGAER ROLE -->
+   <hr>
+   <div sec:authorize="hasRole('MANAGER')">
+      <a th:href="@{/leaders}">Leadership Meeting</a>
+      (Only for manager pipols)
+      </div>
+      <div sec:authorize="hasRole('ADMIN')">
+      <a th:href="@{/system}">System Meeting</a>
+      (Only for system pipols)
+      </div>
+      
+   <hr>
+   
+   <form action="#" th:action="@{/logout}" method="POST">
+   <button class="btn btn-info" type="submit">Logout</button>
+   </form>
+  </body>
+</html>
